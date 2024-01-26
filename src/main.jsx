@@ -11,18 +11,18 @@ const styles = {
   global: (props) => ({
     body: {
       bg: mode("gray.100", "#000")(props),
-      color: mode("gray.800", "whiteAlpha.900"),
+      color: mode("gray.800", "whiteAlpha.900")(props),
     },
   }),
 };
 
 const config = {
-  initialColorMode: "black",
+  initialColorMode: "dark",
   useSystemColorMode: false,
 };
 
 // 3. extend the theme
-const theme = extendTheme({ config });
+const theme = extendTheme({ config, styles });
 
 ReactDOM.createRoot(document.getElementById("root")).render(
   <React.StrictMode>
