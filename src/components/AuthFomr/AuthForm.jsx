@@ -1,11 +1,29 @@
 import { Box, Flex, Image, Text, VStack } from "@chakra-ui/react";
 import { useState } from "react";
 import Login from "./Login";
-import Signup from "./Signup";
+import Signup from "./SignUp";
+import { useNavigate } from "react-router-dom";
 // import GoogleAuth from "./GoogleAuth";
 
 const AuthForm = () => {
   const [isLogin, setIsLogin] = useState(true);
+  const navigate = useNavigate();
+  const [inputs, setInputs] = useState({
+    email: "",
+    password: "",
+    confirmPassword: "",
+  });
+
+  const handleAuth = () => {
+    // if (!inputs.email || !inputs.password) {
+    //   alert("Please enter");
+
+    //   return;
+    // }
+    navigate("/");
+
+    console.log("start");
+  };
 
   return (
     <>
@@ -40,11 +58,13 @@ const AuthForm = () => {
             {isLogin ? "Don't have an account?" : "Already have an account?"}
           </Box>
           <Box
-            onClick={() => setIsLogin(!isLogin)}
+            onClick={() => {
+              console.log("login");
+            }}
             color={"blue.500"}
             cursor={"pointer"}
           >
-            {isLogin ? "Sign up" : "Log in"}
+            {/* {isLogin ? "Sign up" : "Log in"} */}
           </Box>
         </Flex>
       </Box>

@@ -1,13 +1,24 @@
 import { Alert, AlertIcon, Button, Input } from "@chakra-ui/react";
 import { useState } from "react";
 // import useLogin from "../../hooks/useLogin";
-
+import { useNavigate } from "react-router-dom";
 const Login = () => {
   const [inputs, setInputs] = useState({
     email: "",
     password: "",
   });
   //   const { loading, error, login } = useLogin();
+  const navigate = useNavigate();
+  const handleAuth = () => {
+    // if (!inputs.email || !inputs.password) {
+    //   alert("Please enter");
+
+    //   return;
+    // }
+    navigate("/");
+
+    console.log("start");
+  };
   return (
     <>
       <Input
@@ -38,7 +49,7 @@ const Login = () => {
         size={"sm"}
         fontSize={14}
         // isLoading={loading}
-        // onClick={() => login(inputs)}
+        onClick={() => handleAuth()}
       >
         Log in
       </Button>
