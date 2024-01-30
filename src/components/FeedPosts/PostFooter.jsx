@@ -15,7 +15,7 @@ import {
   CommentLogo,
 } from "../../assets/constants";
 
-function PostFooter() {
+function PostFooter({ username }) {
   const [liked, setLiked] = useState(false);
   const [likes, setLikes] = useState(1000);
 
@@ -30,51 +30,53 @@ function PostFooter() {
   };
 
   return (
-    <Flex alignItems={"center"} gap={4} w={"full"} pt={0} mb={2} mt={"auto"}>
-      <Box onClick={handleLike} cursor={"pointer"} fontSize={18}>
-        {!liked ? <NotificationsLogo /> : <UnlikeLogo />}
-      </Box>
-      <Box cursor={"pointer"} fontSize={17}>
-        <CommentLogo />
-      </Box>
-      <Text fontWeight={600} fontSize={"sm"}>
-        {likes} likes
-      </Text>
-      <Text>
-        asaprogrammer_{""}
-        <Text as="span" fontWeight={400}>
-          Feeling good
+    <Box my={4}>
+      <Flex alignItems={"center"} gap={4} w={"full"} pt={0} mb={2} mt={"auto"}>
+        <Box onClick={handleLike} cursor={"pointer"} fontSize={18}>
+          {!liked ? <NotificationsLogo /> : <UnlikeLogo />}
+        </Box>
+        <Box cursor={"pointer"} fontSize={17}>
+          <CommentLogo />
+        </Box>
+        <Text fontWeight={600} fontSize={"sm"}>
+          {likes} likes
         </Text>
-        <Text fontSize="sm" color={"gray"}></Text>
-      </Text>
+        <Text>
+          {username}
+          <Text as="span" fontWeight={400}>
+            Feeling good
+          </Text>
+          <Text fontSize="sm" color={"gray"}></Text>
+        </Text>
 
-      <Flex
-        alignItems={"center"}
-        gap={2}
-        justifyContent={"space-between"}
-        w={"full"}
-      >
-        <InputGroup>
-          <Input
-            variant={"flushed"}
-            placeHolder={"Add comment"}
-            fontSize={14}
-          ></Input>
-          <InputRightElement>
-            <Button
+        <Flex
+          alignItems={"center"}
+          gap={2}
+          justifyContent={"space-between"}
+          w={"full"}
+        >
+          <InputGroup>
+            <Input
+              variant={"flushed"}
+              placeHolder={"Add comment"}
               fontSize={14}
-              color={"blue.500"}
-              fontWeight={600}
-              cursor={"pointer"}
-              _hover={{ color: "white" }}
-              bg={"transparent"}
-            >
-              Post
-            </Button>
-          </InputRightElement>
-        </InputGroup>
+            ></Input>
+            <InputRightElement>
+              <Button
+                fontSize={14}
+                color={"blue.500"}
+                fontWeight={600}
+                cursor={"pointer"}
+                _hover={{ color: "white" }}
+                bg={"transparent"}
+              >
+                Post
+              </Button>
+            </InputRightElement>
+          </InputGroup>
+        </Flex>
       </Flex>
-    </Flex>
+    </Box>
   );
 }
 
