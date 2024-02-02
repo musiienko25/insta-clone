@@ -2,12 +2,16 @@ import React from "react";
 import { Flex, Box } from "@chakra-ui/react";
 import Sidebar from "../../../Sidebar/Sidebar";
 import { useLocation } from "react-router-dom";
+import { auth } from "../../../../firebase/firebase";
+import { useAuthState } from "react-firebase-hooks/auth";
 
 function Pagelayout({ children }) {
   const pathname = useLocation();
+  const [user, loading, error] = useAuthState(auth);
+  const canRenderSidebar = pathname !== "/auth" && user;
   return (
     <Flex>
-      {pathname !== "/auth" ? (
+      {canRenderSidebar ? (
         <Box>
           <Sidebar></Sidebar>
         </Box>
