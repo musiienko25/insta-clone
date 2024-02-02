@@ -3,7 +3,7 @@ import { useState } from "react";
 import Login from "./Login";
 import Signup from "./SignUp";
 import { useNavigate } from "react-router-dom";
-// import GoogleAuth from "./GoogleAuth";
+import GoogleAuth from "./GoogleAuth";
 
 const AuthForm = () => {
   const [isLogin, setIsLogin] = useState(true);
@@ -31,7 +31,7 @@ const AuthForm = () => {
         <VStack spacing={4}>
           <Image src="/logo.png" h={24} cursor={"pointer"} alt="Instagram" />
 
-          {isLogin ? <Login /> : <Signup />}
+          {!isLogin ? <Login /> : <Signup />}
 
           {/* ---------------- OR -------------- */}
           <Flex
@@ -48,7 +48,7 @@ const AuthForm = () => {
             <Box flex={2} h={"1px"} bg={"gray.400"} />
           </Flex>
 
-          {/* <GoogleAuth prefix={isLogin ? "Log in" : "Sign up"} /> */}
+          <GoogleAuth prefix={isLogin ? "Log in" : "Sign up"} />
         </VStack>
       </Box>
 
@@ -64,7 +64,7 @@ const AuthForm = () => {
             color={"blue.500"}
             cursor={"pointer"}
           >
-            {/* {isLogin ? "Sign up" : "Log in"} */}
+            {!isLogin ? "Sign up" : "Log in"}
           </Box>
         </Flex>
       </Box>
