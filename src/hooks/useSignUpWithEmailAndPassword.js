@@ -28,6 +28,17 @@ function useSignUpWithEmailAndPassword() {
       console.log("fill");
       return;
     }
+
+    const usersRef = collection(firestore, "users");
+
+    const q = query(usersRef, where("username", "==", inputs.username));
+
+    const querySnapshot = await getDocs(q);
+
+    if (!querySnapshot.empty) {
+      showToast("error", "username already existst", "error");
+      return;
+    }
     try {
       const newUser = await createUserWithEmailAndPassword(
         inputs.email,

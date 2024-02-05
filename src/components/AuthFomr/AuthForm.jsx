@@ -59,7 +59,7 @@ const AuthForm = () => {
           </Box>
           <Box
             onClick={() => {
-              console.log("login");
+              setIsLogin(!isLogin);
             }}
             color={"blue.500"}
             cursor={"pointer"}
