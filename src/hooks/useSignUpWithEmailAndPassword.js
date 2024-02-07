@@ -12,7 +12,7 @@ import useShowToast from "./useShowToast";
 import useAuthStore from "../store/authStore";
 
 function useSignUpWithEmailAndPassword() {
-  const [createUserWithEmailAndPassword, user, loading, error] =
+  const [createUserWithEmailAndPassword, loading, error] =
     useCreateUserWithEmailAndPassword(auth);
   const showToast = useShowToast(auth);
   const loginUser = useAuthStore((state) => state.login);
@@ -51,11 +51,11 @@ function useSignUpWithEmailAndPassword() {
       if (newUser) {
         const userDoc = {
           uid: newUser.user.uid,
-          email: inputs.email,
-          username: inputs.username,
-          fullname: inputs.fullName,
+          email: newUser.user.email,
+          username: newUser.user.email.split("@")[0],
+          fullname: newUser.user.displayName,
           bio: "",
-          profilePicUSL: "",
+          profilePicUSL: newUser.user.photoURL,
           followers: [],
           following: [],
           posts: [],

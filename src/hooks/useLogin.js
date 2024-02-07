@@ -1,32 +1,34 @@
-import { firestore } from "../firebase/firebase";
-import useShowToast from "./useShowToast";
+import { auth, firestore } from "../firebase/firebase";
+import { doc, getDoc } from "firebase/firestore";
 import { useSignInWithEmailAndPassword } from "react-firebase-hooks/auth";
+import useShowToast from "./useShowToast";
 
 const useLogin = () => {
   const showToast = useShowToast();
-  const [
-    signInWithEmailAndPassword,
-    user,
-    loading,
-    error,
-  ] = useSignInWithEmailAndPassword(auth, email, password);
+  const [signInWithEmailAndPassword, user, loading, error] =
+    useSignInWithEmailAndPassword(auth); // Assuming 'auth' is defined in your firebase/firebase file
 
-  const login = async() => {
-    if (!inputs.email || !inputs.password) {
-      return showToast("Error", "please fill all the fileds", "error")
+  const login = async (email, password) => {
+    if (!email || !password) {
+      return showToast("Error", "Please fill in all the fields", "error");
     }
+
     try {
       const userCred = await signInWithEmailAndPassword(email, password);
 
       if (userCred) {
         const docRef = doc(firestore, "cities", userCred.user.uid);
         const docSnap = await getDoc(docRef);
-        localStorage.setItem("user-info", JSON.stringify(docSnap.data()))
-      }
+        localStorage.setItem("user-info", JSON.stringify(docSnap.data()));
 
+        loginUser(docSnap.data());
+      }
     } catch (error) {
-        showToast("Error: ", error.message, "error")
-  }
+      showToast("Error: ", error.message, "error");
+    }
+  };
+
+  return { login, user, loading, error };
 };
 
 export default useLogin;
