@@ -7,7 +7,6 @@ const SidebarItems = () => {
   return (
     <>
       <Home />
-
       <Notifications />
       <Search />
       <CreatePost />
