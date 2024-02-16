@@ -23,7 +23,7 @@ import usePreviewImg from "../../hooks/usePreviewImg";
 import useShowToast from "../../hooks/useShowToast";
 import useAuthStore from "../../store/authStore";
 import usePostStore from "../../store/postStore";
-import useUserProfileStore from "../../store/userProfileStore";
+import useUserProfileStore from "../../store/useProfileStore";
 import { useLocation } from "react-router-dom";
 import {
   addDoc,
